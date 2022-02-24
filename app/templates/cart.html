@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %} Consulta de Categorias  {%endblock%}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/style_table.css') }}">
+{% endblock %}
+
+{% block body %}
+<section>
+    <h2 class="title">Pedido N {{id}}</h2>
+    <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+        <tr>
+            
+            <th>Prato</th>
+            <th>Observações</th>
+            <th>Quantidade</th>
+            <th>Valor Total</th>
+            <th>Remover Item</th>
+        </tr>
+        </thead>
+    </table>
+    </div>
+    <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tbody id="table_body"> 
+            {% for request in requests %}
+                {% set plate = Plate.query.filter_by(id=request.id_plate).first()  %}
+            <tr>
+                <td>{{plate.name}}</td>
+                <td>{{request.observations}}</td>
+                <td> {{request.quantity}} </td>
+                <td>R$ {{r.replace_dot(request.value)}}</td>
+                <td class="center-button" >
+                    <div class="div-button" >
+                        <a href="{{url_for('main.delete_item', id_request=id, id_plate=plate.id)}}" id="aprove" title="Remover">
+                            <div class="div-danger" >
+                                <span class="material-icons">delete</span>
+                            </div>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            <p class="price">Valor Total: R$ {{r.replace_dot(final_price)}}</p>
+        </tbody>
+    </table>
+    </div>
+</section>
+
+<div class="button-div">
+    <a href="{{url_for('main.index')}}">
+        <button>
+            Voltar
+        </button>
+    </a>
+    <a href="{{url_for('main.new_request', random=id)}}">
+        <button>
+            Editar Pedido
+        </button>
+    </a>
+    <a href="{{url_for('main.close_request', id_request=id)}}">
+        <button>
+            Fechar Pedido
+        </button>
+    </a>
+</div>
+<script src="{{ url_for('static', filename='JS/table.js') }}" ></script>
+{% endblock %}

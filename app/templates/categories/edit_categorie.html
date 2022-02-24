@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block head%}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='CSS/style_form.css')}}">
+{% endblock%}
+{% block title %} Nova Categoria {% endblock%}
+{% block body %}
+<div class="form-box">
+    <h2>Nova Categoria</h2>
+    <form method="POST">
+    {{ form.csrf_token }}
+      <div class="input-box">
+        {{form.name}}
+        {{form.name.label}}
+      </div>
+      <div class="input-box">
+        {{form.photo}}
+        {{form.photo.label}}
+      </div>
+      <button>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Atualizar
+      </button>
+    </form>
+  </div>
+  <div class="div-form-button" >
+    <div class="button-div">
+      <a href="{{url_for('main.index')}}">
+          <button>
+              Voltar
+          </button>
+      </a>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block head%}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='CSS/style_form.css')}}">
+{% endblock%}
+{% block title %} Login {% endblock%}
+{% block body %}
+<div class="form-box">
+    <h2>Login</h2>
+    <form method="POST">
+    {{ form.csrf_token }}
+      <div class="input-box">
+        {{form.username}}
+        {{form.username.label}}
+      </div>
+      <div class="input-box">
+        {{form.password}}
+        {{form.password.label}}
+      </div>
+      <button>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Entrar
+      </button>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block head%}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='CSS/style_menu.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick-theme.css">
+{% endblock%}
+
+{% block body %}
+<main style="display: block; margin-top: 20%;">
+        <a class="div-cart" href="{{url_for('main.cart', id=random)}}">
+            <span class="material-icons">shopping_cart</span>
+            <div class="div-itens">
+                {% set itens = Request.query.filter_by(id_request=random).all() %}
+                {{itens|length}}
+            </div>
+        </a>
+{% for categorie in categories %}
+    <div class="div-categorie">
+        <div class="div-logo">
+            <img src="{{categorie.photo}}"  width="60%" height="60%" alt="">
+        </div>
+        <div class="div-title">{{categorie.name}}</div>
+    </div>
+    <div class="carousel">
+        {% set plates = Plate.query.filter_by(id_categorie=categorie.id).all() %}
+        {% for plate in plates %}
+            <div>
+                <div class="div-card">
+                    <div class="div-image"><img src="{{plate.photo}}" ></div>
+                    <form class="div-info" method="POST" action="{{url_for('main.add_to_cart', random=random, plate_id=plate.id)}}">
+                        <div class="div1"> 
+                            <div class="div-id">{{plate.id}}</div>
+                            <div class="div-name">{{plate.name}}</div>
+                            <div class="div-price" >R$ {{r.replace_dot(plate.price)}}</div>
+                        </div>
+                        {{ form.csrf_token }}
+                            <div class="div2"> {{form.observations (placeholder='Informações Adicionais')}}</div>
+                            <div class="div3"> 
+                                {{form.quantity(value=1, type='number')}}
+                            </div>
+                            <div class="div4">
+                                <a>
+                                    <button>
+                                        <span class="material-icons">add_shopping_cart</span>
+                                    </button>
+                                </a>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+</main>
+
+
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.js"></script>
+<script type="text/javascript">
+$('.carousel').slick({
+  dots: true,
+  infinite: true,
+  speed: 300,
+  slidesToShow: 3,
+  slidesToScroll: 3,
+  centerMode: true,
+  centerPadding: '1%',
+});
+
+
+let number = document.getElementById('quantity')
+
+function Up(){
+    number.value++
+}
+
+function Donw(){
+    number.value--
+}
+
+</script>
+{% endblock %}

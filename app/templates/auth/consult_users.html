@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %} Usuários  {%endblock%}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/style_table.css') }}">
+{% endblock %}
+
+
+{% block body %}
+<section>
+    <h2 class="title">Consulta de Usuários</h2>
+    <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Remover</th>
+        </tr>
+        </thead>
+    </table>
+    </div>
+    <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tbody id="table_body">
+            {% for user in users %}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                {% if user.id == 1 %}
+                    <td></td>
+                {% else %}
+                    <td class="center-button" >
+                        <div class="div-button" >
+                            <a href="{{ url_for('auth.delete_user', id=user.id) }}" id="aprove" title="Remover">
+                                <div class="div-danger" >
+                                    <span class="material-icons">delete</span>
+                                </div>
+                            </a>
+                        </div>
+                    </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</section>
+<div class="button-div">
+    <a href="{{url_for('main.index')}}">
+        <button>
+            Voltar
+        </button>
+    </a>
+</div>
+<script src="{{ url_for('static', filename='JS/table.js') }}" ></script>
+{% endblock %}

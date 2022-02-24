@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% block head %}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{url_for('static', filename='CSS/style_base.css')}}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+        <script src="{{ url_for('static', filename='JS/jquery-3.5.1.min.js', _external=True) }}"></script>
+        <title>Sua marca - {% block title %} {% endblock %}</title>
+    </head>
+{% endblock %}
+<body>
+    {% block header %}
+        <header>
+            <nav class="navbar">
+                <a class="logo-link" href="{{url_for('main.index')}}">
+                <div class="logo">         
+                </div>
+                </a>
+                <ul class="list">
+                    <li class="list-items">
+                        <a href="{{url_for('main.new_request', random=randint(0,10000))}}">Novo Pedido <span class="material-icons">add_circle</span></a>
+                    </li>
+                    <div class="div-button">
+                        <button onclick="myFunction('it-2')" class="dropbtn" > Categorias
+                            <span class="material-icons">arrow_drop_down_circle</span> 
+                        </button>
+                            <div id="it-2" class="dropdown-content">
+                                <a href="{{ url_for('categories.new_categorie') }}">Cadastrar</a>
+                                <a href="{{ url_for('categories.consult_categories') }}">Consultar</a>
+                            </div>
+                    </div>
+                    <div class="div-button">
+                        <button onclick="myFunction('it-3')" class="dropbtn" > Itens
+                            <span class="material-icons">arrow_drop_down_circle</span> 
+                        </button>
+                            <div id="it-3" class="dropdown-content">
+                                <a href="{{ url_for('items.new_plate') }}">Cadastrar</a>
+                                <a href="{{ url_for('items.consult_plates') }}">Consultar</a>
+                            </div>
+                    </div>
+                    <div class="div-button">
+                        <button onclick="myFunction('it-4')" class="dropbtn" > Administração 
+                            <span class="material-icons">arrow_drop_down_circle</span> 
+                        </button>
+                            <div id="it-4" class="dropdown-content">
+                                <a href="{{ url_for('auth.new_user') }}" >Novo Login</a>
+                                <a href="{{ url_for('auth.users') }}" >Usuários</a>
+                                
+                            </div>
+                    </div>
+                </ul>
+                {% if not current_user.is_authenticated %}
+                    <div class="div-login">
+                        <button >
+                            <a href="{{ url_for('auth.login') }}">Login <span class="material-icons">person</span> </a>
+                        </button>
+                    </div>
+                {% else %}
+                    <div class="div-login">
+                        <button onclick="myFunction('it-5')" class="dropbtn" > {{current_user.username}}
+                            <span class="material-icons">manage_accounts</span> 
+                        </button>
+                            <div id="it-5" class="dropdown-content">
+                                <a href="{{ url_for('auth.change_password') }}" >Alterar Senha</a>
+                                <a href="{{ url_for('auth.logout') }}">Desconectar</a>
+                            </div>
+                    </div>
+                {% endif %}
+            </nav>
+        </header>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for message in messages %}
+                <div class="message_flash">{{ message.capitalize() }}</div>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    {% endblock %}
+    <main>
+        {% block body %}
+        {% endblock %}
+    </main>
+
+</body>
+<script src="{{ url_for('static', filename='JS/base.js') }}"></script>
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'>
+</script>
+<script>
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+</html>
+
+  

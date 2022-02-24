@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %} Consulta de Categorias  {%endblock%}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/style_table.css') }}">
+{% endblock %}
+
+
+{% block body %}
+<section>
+    <h2 class="title">Consulta de Categorias</h2>
+    <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome da Categoria</th>
+            <th>Icone</th>
+            <th>Editar</th>
+            <th>Remover</th>
+        </tr>
+        </thead>
+    </table>
+    </div>
+    <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tbody id="table_body">
+            {% for cat in categories %}
+            <tr>
+                <td>{{cat.id}}</td>
+                <td>{{cat.name}}</td>
+                <td> <img src="{{cat.photo}}" alt="" width="25px" height="25px"> </td>
+                <td class="center-button" >
+                    <div class="div-button" >
+                        <a href="{{ url_for('categories.edit_categorie', id=cat.id) }}" id="aprove" title="Editar">
+                            <div class="div-sucess" >
+                                <span class="material-icons">edit</span>
+                            </div>
+                        </a>
+                    </div>
+                </td>
+                <td class="center-button" >
+                    <div class="div-button" >
+                        <a href="{{ url_for('categories.delete_categorie', id=cat.id) }}" id="aprove" title="Remover">
+                            <div class="div-danger" >
+                                <span class="material-icons">delete</span>
+                            </div>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</section>
+<div class="button-div">
+    <a href="{{url_for('main.index')}}">
+        <button>
+            Voltar
+        </button>
+    </a>
+</div>
+<script src="{{ url_for('static', filename='JS/table.js') }}" ></script>
+{% endblock %}

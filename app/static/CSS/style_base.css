@@ -1,0 +1,282 @@
+:root{
+    --text: 'Roboto', sans-serif;
+    --primary: #ed9121;
+    --secondary: #696969;
+    --black: #111111;
+    --white: #f5f5f5;
+}
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+      local('MaterialIcons-Regular'),
+      url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+      url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+      url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+
+body{
+    background: #355C7D;  /* fallback for old browsers */
+    background: linear-gradient(to right, #C06C84, #6C5B7B, #355C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    margin: 0%;
+    height: 100vh;
+}
+
+main{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+.navbar{
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    background-color: var(--primary);
+    width: 100vw;
+    height: fit-content;
+    display: flex;
+    border-bottom: 4px solid var(--secondary);
+}
+
+.logo-link{
+    width: 10%;
+}
+
+.logo{
+    width: 100%;
+    height: 100%;
+    margin: 0.1% 1% 0 1%;
+    background-image: url("/static/img/logo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:contain;
+}
+
+
+.list{
+    color: var(--secondary);
+    font-family: var(--text);
+    font-size: 1rem;
+    width: 70%;
+    display:flex;
+    list-style: none;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.list-items{
+    font-size: 1rem;
+    display: flex;
+}
+
+.list-items .material-icons {
+    position: relative;
+    top: 12%;
+    left: 2%;
+    font-size:  1rem;
+}
+
+.list-items a {
+    text-decoration: none;
+    color: var(--black);
+}
+
+.list-items a:hover{
+    transition:  linear 0.350s;
+    color: var(--secondary);
+    text-decoration:underline;
+    font-size: 1.2rem;
+
+}
+
+.div-button{
+    display: flex;
+    flex-direction: column;
+}
+
+.dropbtn{
+    text-align: center;
+    background-color: transparent;
+    border:none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.dropbtn .material-icons{
+    position: relative;
+    top: 12%;
+    left: 2%;
+    font-size:  1rem;
+}
+
+.dropdown-content {
+    font-size:  1rem;
+    display: none;
+    background-color: transparent;
+    border-top: 1px solid var(--secondary);
+    font-family: var(--text);
+    margin-right: 5%;
+    
+}
+
+.dropdown-content a {
+    margin: 15% 10%;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    transition:  linear 0.350s;
+    color: var(--secondary);
+    text-decoration:underline;
+    font-size: 1.2rem;
+}
+
+.show{
+    display:block;
+}
+
+.div-login{
+    width: 14%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.div-login button{
+    font-family: var(--text);
+    font-size: 1rem;
+    width: 70%;
+    height: 50%;
+    background-color: transparent;
+    border: none;
+}
+
+.div-login button a {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-decoration: none;
+    color: var(--black);
+}
+
+.div-login button .material-icons{
+    font-size: 1.5rem;
+    margin-bottom: 10%;
+}
+
+.div-login button{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-decoration: none;
+}
+
+.message_flash{
+    width: 100%;
+    position:absolute;
+    background-color: var(--primary);
+    color: #FFF;
+    font-family: var(--text);
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    z-index: 2;
+    left: 0%;
+    top: 8.6%;
+    border-bottom: 4px solid var(--secondary);
+}
+
+
+
+/* Bõtões */
+
+.button-div{
+    width: 75%;
+    height: 12%;
+    margin-bottom: 2%;
+    margin-left: 12%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.button-div a{
+    height: 50%;
+    width: 20%;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button-div button{
+    width: 100%;
+    height: 100%;
+    background: var(--primary);
+    color: var(--black);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.button-div button:hover{
+    border-radius: 10px;
+    box-shadow: 0 0 5px var(--primary),
+                0 0 25px var(--primary),
+                0 0 50px var(--primary),
+                0 0 100px var(--primary);
+}
+
+.div-form-button{
+    align-self: flex-end;
+    width: 10%;
+    margin-right: 2%;
+}
+
+.div-form-button .button-div{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0%;
+    margin-left: 0%;
+    display: block;
+    font-family: var(--text);
+}
+
+.button-div button{
+    font-family: var(--text);
+}

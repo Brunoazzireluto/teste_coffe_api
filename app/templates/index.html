@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block head%}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='CSS/style_index.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/style_table.css') }}">
+{% endblock%}
+
+{% block body %}
+<div class="parent">
+    <div class="div1">
+        <section>
+            <h2 class="title">Ultimos Pedidos</h2>
+            <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Número Pedido</th>
+                    <th>Quantidade de itens</th>
+                    <th>Valor total</th>
+                </tr>
+                </thead>
+            </table>
+            </div>
+            <div class="tbl-content">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tbody id="table_body">
+                    {% for info in infos %}
+                    <tr>
+                        <td>{{info.date.strftime("%d/%m/%Y -  %H:%M")}}</td>
+                        <td>{{info.id_request}}</td>
+                        <td>{{Request.query.filter_by(id_request=info.id_request).all()|length}}</td>
+                        <td> R$ {{r.replace_dot(query_sum(info.id_request))}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </section>
+
+    </div>
+    <div class="div2">bb</div>
+</div>
+<script src="{{ url_for('static', filename='JS/table.js') }}" ></script>
+{% endblock %}

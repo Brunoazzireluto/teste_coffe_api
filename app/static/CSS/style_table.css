@@ -1,0 +1,149 @@
+:root{
+    --text: 'Roboto', sans-serif;
+    --primary: #ed9121;
+    --secondary: #696969;
+    --black: #111111;
+    --white: #f5f5f5;
+}
+
+
+.title{
+    font-family: var(--text);
+    font-size: 30px;
+    color: var(--black);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+table{
+    width:100%;
+    table-layout: fixed;
+}
+
+.select{
+    position: absolute;
+    right: 1%;
+    top: 2%;
+    border: none;
+    background-color: transparent;
+    border-bottom: 3px solid #EE4F39;
+}
+
+.consult-table section{
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.tbl-header{
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    background-color: var(--primary);
+}
+.tbl-content{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: rgba(230, 223, 223, 0.719);
+    height:300px;
+    overflow-x:auto;
+    margin-top: 0px;
+    border: 1px solid rgba(14, 8, 8, 0.50);
+}
+
+.tbl-content .price{
+    font-family: var(--text);
+    position: absolute;
+    bottom: 24%;
+    left: 46%;
+}
+
+th{
+    font-family: var(--text);
+    padding: 15px 10px;
+    text-align: center;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: var(--black);
+    text-transform: uppercase;
+}
+td{
+    font-family: var(--text);
+    padding: 15px 10px;
+    text-align: center;
+    vertical-align:middle;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: black;
+}
+
+section{
+
+    margin: 5% 6%;
+}
+
+.center{
+    position: relative;
+    left: 5%;
+}
+
+.div-button{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+.div-button a{
+    text-decoration: none;
+}
+
+.div-sucess{
+    margin: 2%;
+    border-radius: 5px;
+    background-color: transparent;
+    z-index: 300;
+    width: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #474a51;
+}
+
+.div-sucess:hover{
+    transition: all ease-in 0.20s ;
+    color: #008000;
+}
+
+.div-danger{
+    margin: 2%;
+    border-radius: 5px;
+    background-color: transparent;
+    width: 98%;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #474a51;
+}
+
+.div-danger:hover{
+    transition: all ease-in 0.20s ;
+    color: #FF0000;
+}
+
+.div-normal{
+    margin: 2%;
+    border-radius: 5px;
+    background-color: transparent;
+    width: 98%;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #474a51;
+}
+
+.div-normal:hover{
+    transition: all ease-in 0.20s ;
+    color: #EE4F39;
+}

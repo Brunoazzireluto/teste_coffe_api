@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block head%}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='CSS/style_form.css')}}">
+{% endblock%}
+{% block title %} Editar Prato {% endblock%}
+{% block body %}
+<div class="form-box">
+    <h2>Editar Prato</h2>
+    <form method="POST" enctype="multipart/form-data">>
+    {{ form.csrf_token }}
+    <div class="input-box">
+      {{form.categorie}}
+      {{form.categorie.label}}
+    </div>
+      <div class="input-box">
+        {{form.name}}
+        {{form.name.label}}
+      </div>
+      <div class="input-box">
+        {{form.description}}
+        {{form.description.label}}
+      </div>
+      <div class="two-inputs" >
+        <div class="input-box">
+            {{form.price}}
+            {{form.price.label}}
+        </div>
+        <div class="input-file">
+            {{form.photo.label(class='file-label', id='File-button')}}
+            {{form.photo}}
+          </div>
+      </div>
+      <button>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Atualizar
+      </button>
+    </form>
+</div>
+<div class="div-form-button" >
+  <div class="button-div">
+    <a href="{{url_for('main.index')}}">
+        <button>
+            Voltar
+        </button>
+    </a>
+  </div>
+</div>
+<script>
+  let button = document.getElementById('File-button')
+  let file = document.getElementById('photo')
+
+  setInterval( function(){
+    if (file.files.length == 0){
+      button.innerHTML = 'Enviar Foto'
+    }else{
+      button.innerHTML = 'Foto Selecionada'
+    }
+  }, 2000)
+
+
+
+</script>
+{% endblock %}
